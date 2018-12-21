@@ -21,18 +21,15 @@ class ViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.delegate = self
-        print("Home View will appear")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        print("HomeView did load")
         setupTableView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("Home View will disappear")
     }
     
     
@@ -40,11 +37,8 @@ class ViewController: UIViewController {
         tableView?.delegate = self
         tableView?.dataSource = self
         tableView?.separatorStyle = UITableViewCell.SeparatorStyle.none
-        //tableView?.register(HomeTableViewCell.self, forCellReuseIdentifier: "HomeTableViewCell")
         tableView.register(HomeTableViewCell.classForCoder(), forCellReuseIdentifier: "HomeTableViewCell")
         tableView.backgroundColor = UIColor.clear
-//        self.transitioningDelegate = (self as! UIViewControllerTransitioningDelegate)
-//        self.modalPresentationStyle = .custom
     }
 
     //MARK: 截屏
@@ -123,17 +117,14 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
 //MARK: Navigation Delegate
 extension ViewController:UINavigationControllerDelegate,UIViewControllerAnimatedTransitioning{
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        print("transitionDuration---1")
         return 1.0
     }
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        print("navigationController---1")
         return self
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        print("animateTransition--1")
         let cell:HomeTableViewCell = tableView.cellForRow(at: selectIndexPath!) as! HomeTableViewCell
         let toVC:UIViewController = transitionContext.viewController(forKey: .to)!
         let toView:UIImageView = toVC.value(forKeyPath:"headerImageView") as! UIImageView

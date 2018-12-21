@@ -32,7 +32,6 @@ class DetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("Detail View will appear")
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
     }
@@ -41,13 +40,11 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.orange
-        print("Detail View did load")
         initData()
         setupSubView()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("Detail View will disappear")
     }
     
     func initData(){
@@ -213,14 +210,7 @@ extension DetailViewController: UITableViewDelegate,UITableViewDataSource{
             var rectQ:CGRect = self.headerImageView!.frame
             rectQ.origin.y = scrollView.contentOffset.y
             self.headerImageView!.frame = rectQ
-            
-//            let rectT:CGRect = _titleLabel.frame;
-//            rectT.origin.y = scrollView.contentOffset.y+30;
-//            _titleLabel.frame = rectT;
-//
-//            let rectC:CGRect = _titleTwoLabel.frame;
-//            rectC.origin.y = scrollView.contentOffset.y +SCREEN_WIDTH*1.3-30;
-//            _titleTwoLabel.frame = rectC;
+
         }
     }
 }
@@ -229,17 +219,14 @@ extension DetailViewController: UITableViewDelegate,UITableViewDataSource{
 //MARK: Navigation Delegate
 extension DetailViewController:UINavigationControllerDelegate,UIViewControllerAnimatedTransitioning{
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        print("transitionDuration---2")
         return 1.0
     }
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?{
-        print("navigationController---2")
         return self
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        print("animateTransition--2")
         let toVC:ViewController = transitionContext.viewController(forKey: .to) as! ViewController
         let fromVC:DetailViewController = transitionContext.viewController(forKey: .from) as! DetailViewController
         let containerView = transitionContext.containerView
