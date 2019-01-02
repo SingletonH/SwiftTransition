@@ -21,7 +21,7 @@
 9、不难发现，在详情页左滑时还有一个模糊的背景正是首页的截图。
 
 ### 代码实现：
-除了不知道如何重写pop和push之外其余思路清晰之后，便可以开始绘制基本UI了
+除了不知道如何重写pop和push之外其余思路清晰之后，便可以开始绘制基本UI了<br />
 ![系统push、pop效果](https://upload-images.jianshu.io/upload_images/6695792-f666c487494066c5.gif?imageMogr2/auto-orient/strip)
 
 #### 一、重写Push、实现Delegate
@@ -54,7 +54,7 @@ extension ViewController:UINavigationControllerDelegate,UIViewControllerAnimated
 3、将需要展示动画的view设置相应位置之后添加到transitionContext中
 4、展示动画toView.alpha 0~>1 逐渐显示，frame 首页cell frame~> 详情页header frame 逐渐放大
 5、移除用于展示动画的view，显示详情页view，显示首页view
-```
+```swift
 func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
         let cell:HomeTableViewCell = tableView.cellForRow(at: selectIndexPath!) as! HomeTableViewCell
@@ -107,7 +107,7 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
     }
 ```
 #### 二、将首页截图传递给详情页备用
-```(swift)
+```swift
 //MARK: 截屏
     func imageFromView() ->UIImage{
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -125,7 +125,7 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
 2、滑动过程中，实时获取当前滑动位置到初始位置的距离，实时计算该距离占据屏幕比例，相应缩小tableView大小并添加适应的圆角
 3、手势结束时，获取手势发生的开始位置，手势结束后获取结束位置，计算出总共滑动范围
 4、依据滑动范围所占屏幕的比例从而决定是否pop回上一页。若比例达到返回上一页，重写pop动画与push类似。若比例未达到，恢复详情页tableView frame
-```
+```swift
 @objc func handleGesture(_ sender:UIGestureRecognizer){
         
         weak var weakSelf = self
