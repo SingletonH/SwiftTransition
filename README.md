@@ -25,7 +25,7 @@
 ![系统push、pop效果](https://upload-images.jianshu.io/upload_images/6695792-f666c487494066c5.gif?imageMogr2/auto-orient/strip)
 
 #### 一、重写Push、实现Delegate
-```
+```swift
 extension ViewController:UINavigationControllerDelegate,UIViewControllerAnimatedTransitioning{
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.0
