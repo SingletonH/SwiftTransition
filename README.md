@@ -191,4 +191,4 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
 1、如果实际开发中多处需要用到这种转场效果可以抽出一个工具类来。<br />
 2、其实App Store中pop回来还有一个效果就是返回到首页时下面的文字说明会像一个抽屉一样由下往上收回的效果，有时间再去研究一下。另外，App Store上的背景配色之类一些细节处理也是非常极致的，有兴趣的朋友可以继续深究。<br />
 3、如有不足之处，望各路大神斧正。<br />
-4、[源码地址：https://github.com/SingletonH/SwiftTransition.git](https://github.com/SingletonH/SwiftTransition.git)
+4、[简书博客：https://www.jianshu.com/p/889667b3a3ce](https://www.jianshu.com/p/889667b3a3ce)
