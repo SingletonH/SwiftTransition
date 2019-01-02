@@ -10,14 +10,14 @@
 ![效果图](https://upload-images.jianshu.io/upload_images/6695792-899f9bb7318751e1.gif?imageMogr2/auto-orient/strip)
 
 ### 场景分析：
-1、某日，我看到App Store上首页花里胡哨的转场动画体验着实不错，便想着自己实现一番。
-2、作为一个萌新看到这样的效果完全联想不到是用何等操作实现的，so，百度，于是找到一个OC版。
-3、然后也知道此效果主要是通过重写系统的push、pop动画达到的。作为一个Swift偏好者，难免不想翻译一下。
-4、既然是需要push、pop，那么第一步是需要navigationController，我是直接在StoryBoard中嵌入的。
-5、接下来是首页TableView布局，cell触摸缩小放大。
-6、点击cell Push到详情页，本文重点，先放到后面再详说。
-7、详情页依旧是TableView布局。顶部大图为Header，底部为文本，动态计算高度即可。
-8、详情页伴随着左滑手势将页面按一定比例缩小，当缩小一定程度时Pop回首页。
+1、某日，我看到App Store上首页花里胡哨的转场动画体验着实不错，便想着自己实现一番。<br />
+2、作为一个萌新看到这样的效果完全联想不到是用何等操作实现的，so，百度，于是找到一个OC版。<br />
+3、然后也知道此效果主要是通过重写系统的push、pop动画达到的。作为一个Swift偏好者，难免不想翻译一下。<br />
+4、既然是需要push、pop，那么第一步是需要navigationController，我是直接在StoryBoard中嵌入的。<br />
+5、接下来是首页TableView布局，cell触摸缩小放大。<br />
+6、点击cell Push到详情页，本文重点，先放到后面再详说。<br />
+7、详情页依旧是TableView布局。顶部大图为Header，底部为文本，动态计算高度即可。<br />
+8、详情页伴随着左滑手势将页面按一定比例缩小，当缩小一定程度时Pop回首页。<br />
 9、不难发现，在详情页左滑时还有一个模糊的背景正是首页的截图。
 
 ### 代码实现：
@@ -49,11 +49,11 @@ extension ViewController:UINavigationControllerDelegate,UIViewControllerAnimated
 來源：简书
 
 有了一定概念之后，我们来解读一下下面的逻辑
-1、拿到toView:即将要展示的视图，fromView:当前页面已展示的view
-2、拿到toView,fromView之后，即将要展示动画，先将fromView隐藏，操作toView的fram和alpha以达到弹出放大的效果
-3、将需要展示动画的view设置相应位置之后添加到transitionContext中
-4、展示动画toView.alpha 0~>1 逐渐显示，frame 首页cell frame~> 详情页header frame 逐渐放大
-5、移除用于展示动画的view，显示详情页view，显示首页view
+1、拿到toView:即将要展示的视图，fromView:当前页面已展示的view <br />
+2、拿到toView,fromView之后，即将要展示动画，先将fromView隐藏，操作toView的fram和alpha以达到弹出放大的效果<br />
+3、将需要展示动画的view设置相应位置之后添加到transitionContext中<br />
+4、展示动画toView.alpha 0~>1 逐渐显示，frame 首页cell frame~> 详情页header frame 逐渐放大<br />
+5、移除用于展示动画的view，显示详情页view，显示首页view<br />
 ```swift
 func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
@@ -121,9 +121,9 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
 ```
 
 #### 三、详情页添加左滑返回手势
-1、给详情页的tableView添加手势
-2、滑动过程中，实时获取当前滑动位置到初始位置的距离，实时计算该距离占据屏幕比例，相应缩小tableView大小并添加适应的圆角
-3、手势结束时，获取手势发生的开始位置，手势结束后获取结束位置，计算出总共滑动范围
+1、给详情页的tableView添加手势<br />
+2、滑动过程中，实时获取当前滑动位置到初始位置的距离，实时计算该距离占据屏幕比例，相应缩小tableView大小并添加适应的圆角<br />
+3、手势结束时，获取手势发生的开始位置，手势结束后获取结束位置，计算出总共滑动范围<br />
 4、依据滑动范围所占屏幕的比例从而决定是否pop回上一页。若比例达到返回上一页，重写pop动画与push类似。若比例未达到，恢复详情页tableView frame
 ```swift
 @objc func handleGesture(_ sender:UIGestureRecognizer){
@@ -188,7 +188,7 @@ func animateTransition(using transitionContext: UIViewControllerContextTransitio
         }
 ```
 ### 总结
-1、如果实际开发中多处需要用到这种转场效果可以抽出一个工具类来。
-2、其实App Store中pop回来还有一个效果就是返回到首页时下面的文字说明会像一个抽屉一样由下往上收回的效果，有时间再去研究一下。另外，App Store上的背景配色之类一些细节处理也是非常极致的，有兴趣的朋友可以继续深究。
-3、如有不足之处，望各路大神斧正。
+1、如果实际开发中多处需要用到这种转场效果可以抽出一个工具类来。<br />
+2、其实App Store中pop回来还有一个效果就是返回到首页时下面的文字说明会像一个抽屉一样由下往上收回的效果，有时间再去研究一下。另外，App Store上的背景配色之类一些细节处理也是非常极致的，有兴趣的朋友可以继续深究。<br />
+3、如有不足之处，望各路大神斧正。<br />
 4、[源码地址：https://github.com/SingletonH/SwiftTransition.git](https://github.com/SingletonH/SwiftTransition.git)
